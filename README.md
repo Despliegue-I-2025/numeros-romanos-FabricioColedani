@@ -1,57 +1,122 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/gJA-GD-V)
-﻿# Tateti Random
+# 🏛️ Conversor Números Arábigos ↔ Romanos
 
-API sencilla en Node.js que devuelve un movimiento aleatorio para un tablero de ta-te-ti.
+Aplicación web interactiva para convertir números entre el sistema arábigo y romano de forma bidireccional.
 
-## Requisitos previos
-- Node.js 18 o superior.
-- Cuenta en Vercel con un proyecto (puede ser creado desde el dashboard o con el comando vercel link).
-- Acceso de administrador al repositorio en GitHub para crear *secrets*.
+**🚀 Sitio en Vivo:** https://conversornumerosromanos.netlify.app/
 
-## Instalacion local
-1. Clonar el repositorio y situarse en la raiz.
-2. Instalar las dependencias con `npm install`.
-3. Ejecutar la bateria de pruebas con `npm test`.
-4. Levantar el servidor local con `npm start` y consumir el endpoint `GET /move?board=[...]`.
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript) ![Tailwind](https://img.shields.io/badge/Tailwind-3-38B2AC?logo=tailwindcss)
 
-## Despliegue continuo en Vercel
-Cada *push* a la rama `main` ejecuta el flujo definido en `.github/workflows/deploy-vercel.yml`. Este flujo instala dependencias, corre las pruebas y despliega en Vercel usando la CLI oficial. Para que funcione, sigue estos pasos una sola vez:
+---
 
-### 1. Autenticarse y vincular el proyecto en Vercel
+## ✨ Características
+
+- 🔄 **Conversión bidireccional** - Arábigo ↔ Romano (rango 1-3999)
+- ⚡ **Conversión instantánea** - Resultados en tiempo real
+- ✅ **Validación inteligente** - Mensajes claros de error
+- 📚 **Historial** - Últimas 10 conversiones guardadas
+- 🌓 **Tema claro/oscuro** - Cambia según tu preferencia
+- 📱 **100% Responsive** - Funciona en móvil, tablet y desktop
+- 📖 **Guía educativa** - Aprende cómo funcionan los números romanos
+
+---
+
+## 🚀 Instalación Local
+
 ```bash
-npm install --global vercel    (este paso instala vecel en tu máquina)
-vercel login  (este paso pide que hagas ENTER. Con eso te abre un browser y espera a que lo autorices)
-vercel link
+# Clonar el repositorio
+git clone https://github.com/TU_USUARIO/ConversorNumerosRomanos.git
+
+# Entrar al directorio
+cd ConversorNumerosRomanos
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
 ```
-El comando `vercel link` crea la carpeta `.vercel/` (no la subas al repositorio) con el archivo `project.json` que contiene `orgId` y `projectId`.
 
-### 2. Crear un token de acceso
-Genera un token permanente con `vercel tokens create tateti-ci` o desde el dashboard (Account Settings > Tokens). 
-Yo lo creé con scope completo, y sin expirar. Lo guardé en un archivo .private que no se sube al git
-Guarda el valor; solo se muestra una vez.
+Abre `http://localhost:5173` en tu navegador.
 
-### 3. Configurar *GitHub Secrets*
-En GitHub entra a **Settings > Secrets and variables > Actions** y agrega los siguientes secretos:
-- `VERCEL_TOKEN`: el token generado en el paso anterior.
-- `VERCEL_ORG_ID`: valor `orgId` del archivo `.vercel/project.json`.
-- `VERCEL_PROJECT_ID`: valor `projectId` del archivo `.vercel/project.json`.
+---
 
-Si tu aplicacion necesita variables de entorno, definalas en Vercel (`vercel env add` o desde el dashboard) o agrega pasos adicionales en el workflow.
+## 🛠️ Tecnologías
 
-### 4. Disparar el workflow a mano (no debería hacer falta con GitHub Actions)
-Con los secretos configurados, haz *push* a `main`. GitHub Actions ejecuta:
-1. `npm ci`
-2. `npm test`
-3. `npx vercel pull --yes --environment=production`
-4. `npx vercel build --prod`
-5. `npx vercel deploy --prebuilt --prod`
+- **React 18** - Framework UI
+- **TypeScript** - Tipado estático
+- **Vite** - Build tool ultrarrápido
+- **Tailwind CSS** - Estilos utility-first
+- **Lucide React** - Iconos modernos
 
-Al finalizar vas a ver la URL de despliegue en la pestana **Actions** del repositorio y en el dashboard de Vercel.
+---
 
-## Personalizacion
-- Para desplegar desde otra rama, cambia la seccion `on.push.branches` del workflow.
-- Si deseas saltar las pruebas antes de desplegar, elimina el paso "Run tests" en el YAML.
+## 📝 Uso
 
-## Scripts utiles
-- `npm start`: inicia el servidor.
-- `npm test`: ejecuta Jest.
+### Arábigo → Romano
+1. Escribe un número entre 1 y 3999
+2. El resultado aparece automáticamente
+
+### Romano → Arábigo
+1. Escribe números romanos (ej: MMXXIV)
+2. Conversión instantánea
+
+### Historial
+- Click en cualquier conversión anterior para recargarla
+- Se guardan las últimas 10 conversiones
+
+---
+
+## 🎓 Reglas de Números Romanos
+
+| Símbolo | Valor |
+|---------|-------|
+| I | 1 |
+| V | 5 |
+| X | 10 |
+| L | 50 |
+| C | 100 |
+| D | 500 |
+| M | 1000 |
+
+**Reglas básicas:**
+1. **Suma**: Símbolos iguales o decrecientes se suman → `VI = 6`
+2. **Resta**: Símbolo menor antes de mayor se resta → `IV = 4`
+3. **Repetición**: I, X, C, M se repiten máximo 3 veces → `III = 3`
+
+**Ejemplos:**
+- `MCMXCIV` = 1994
+- `MMXXIV` = 2024
+- `CDXLIV` = 444
+
+---
+
+## 📂 Estructura del Proyecto
+
+```
+ConversorNumerosRomanos/
+├── backend/       
+│   ├── server.js       # Logica del Conversor
+│   ├── package.json    # Dependencias Backend
+│   ├── test.js         # Pruebas de la logicas
+│   └── .gitignore 
+├── src/
+│   ├── App.tsx              # Frontend + API de la carpeta Backend (Desplegado en Render)
+│   ├── main.tsx             # Punto de entrada React
+│   └── index.css            # Estilos Tailwind
+├── public/                  # Archivos estáticos
+├── index.html               # HTML base
+├── netlify.toml             # Config deploy Netlify
+├── tailwind.config.js       # Config Tailwind CSS
+├── vite.config.ts           # Config Vite
+└── package.json             # Dependencias
+```
+
+---
+
+## 👤 Autor
+
+**Fabricio Coledani**
+- Estudiante de la Universidad Provincial de Córdoba Sede Capilla del Monte
+- Proyecto Realizado en la Materia: Diseños y Arquitecturas de Despliegues I
+
+---
